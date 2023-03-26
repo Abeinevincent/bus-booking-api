@@ -34,7 +34,7 @@ app.use(helmet());
 app.use(morgan("common"));
 
 app.use("/api/bookings", BookingsRoute);
-app.use(`${process.env.PAYMENT_URL}`, BookingsRoute);
+app.use("/api/payments", PaymentsRoute);
 
 // Start the backend server
 const PORT = process.env.PORT || 8800;

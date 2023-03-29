@@ -10,6 +10,7 @@ const helmet = require("helmet");
 const dotenv = require("dotenv").config();
 
 // Import all routes
+const AuthRoute = require("./routes/auth");
 const BookingsRoute = require("./routes/bookings");
 const PaymentsRoute = require("./routes/payments");
 
@@ -33,6 +34,7 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan("common"));
 
+app.use("/api/auth", AuthRoute);
 app.use("/api/bookings", BookingsRoute);
 app.use("/api/payments", PaymentsRoute);
 

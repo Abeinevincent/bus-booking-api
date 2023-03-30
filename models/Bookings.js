@@ -21,14 +21,25 @@ const BookingsModel = new mongoose.Schema(
       required: true,
     },
     seatNumber: {
-      type: Number,
-      // required: true,
+      type: Array,
+      required: true,
     },
     phoneNumber: {
       type: String,
       required: true,
     },
-    
+    ticketNumber: {
+      type: Number,
+    },
+    busNumber: {
+      type: String,
+    },
+    paymentStatus: {
+      type: String,
+    },
+    transactionRef: {
+      type: String,
+    },
   },
   { timestamps: true }
 );

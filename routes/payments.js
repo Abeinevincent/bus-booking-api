@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const axios = require("axios");
+const Bookings = require("../models/Bookings");
 
 // INITIATE PAYMENT
 router.post("/payment", async (req, res) => {
@@ -15,12 +16,13 @@ router.post("/payment", async (req, res) => {
   };
 
   const { phoneNumber, amount } = req.body;
+  const transactionRef = generateRef()
   const data = {
     amount,
     contact: phoneNumber,
     username: "rutemose@gmail.com",
     api_key: process.env.API_KEY,
-    transaction_reference: generateRef(),
+    transaction_reference: transactionRef,
     narrative: process.env.NARRATIVE,
     ipn_url: process.env.IPN_URL,
     fpn_url: process.env.FPN_URL,
@@ -39,6 +41,12 @@ router.post("/payment", async (req, res) => {
     });
 
     console.log(response); // Handle the response from the external API
+    const updatedBookings = Bookings.findOneAndUpdate({
+      transactionRef
+    }, {
+      $set: req.body,
+      new: true
+    });
     return res.status(201).send(response.data); // Send a success response to the client
   } catch (err) {
     console.log(err);

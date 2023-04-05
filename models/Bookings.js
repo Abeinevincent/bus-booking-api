@@ -29,16 +29,20 @@ const BookingsModel = new mongoose.Schema(
       required: true,
     },
     ticketNumber: {
-      type: Number,
+      type: String,
+      default: "N/A"
     },
     busNumber: {
       type: String,
+      default: "N/A"
     },
     paymentStatus: {
       type: String,
+      default: "N/A"
     },
     transactionRef: {
       type: String,
+      default: "N/A"
     },
   },
   { timestamps: true }

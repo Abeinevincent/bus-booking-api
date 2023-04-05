@@ -13,6 +13,7 @@ const dotenv = require("dotenv").config();
 const AuthRoute = require("./routes/auth");
 const BookingsRoute = require("./routes/bookings");
 const PaymentsRoute = require("./routes/payments");
+const FPNROute = require("./routes/fpn");
 
 // const errors = require("./routes/errors");
 
@@ -37,6 +38,7 @@ app.use(morgan("common"));
 app.use("/api/auth", AuthRoute);
 app.use("/api/bookings", BookingsRoute);
 app.use("/api/payments", PaymentsRoute);
+app.use("/api/fpn", FPNROute);
 
 // Start the backend server
 const PORT = process.env.PORT || 8800;

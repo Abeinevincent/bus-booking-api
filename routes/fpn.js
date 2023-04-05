@@ -10,3 +10,5 @@ router.get("/failure", async (req, res) => {
     console.log(err);
   }
 });
+
+module.exports = router;

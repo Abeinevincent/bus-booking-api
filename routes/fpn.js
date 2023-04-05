@@ -2,20 +2,14 @@ const { default: axios } = require("axios");
 
 const router = require("express").Router();
 
-
 const getIPN = async () => {
-    try {
+  try {
+    const res = await axios.get(`${process.env.FPN_URL}`);
 
-        res = await axios.get(`${process.env.FPN_URL}`)
+    console.log(res.data);
+  } catch (err) {
+    console.log(err);
+  }
+};
 
-        console.log(res.data)
-    
-    } catch(err) {
-        console.log(err)
-    }
-    
-}
-
-getIPN()
-
-
+getIPN();

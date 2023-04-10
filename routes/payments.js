@@ -16,7 +16,7 @@ router.post("/payment", async (req, res) => {
   };
 
   const { phoneNumber, amount } = req.body;
-  const transactionRef = generateRef()
+  const transactionRef = generateRef();
   const data = {
     amount,
     contact: phoneNumber,
@@ -40,13 +40,17 @@ router.post("/payment", async (req, res) => {
       headers,
     });
 
-    console.log(response); // Handle the response from the external API
-    const updatedBookings = Bookings.findOneAndUpdate({
-      transactionRef
-    }, {
-      $set: req.body,
-      new: true
-    });
+    console.log(response.config.data, "res.config.data"); // Handle the response from the external API
+    console.log(response.data, "res.data"); // Handle the response from the external API
+    const updatedBookings = Bookings.findOneAndUpdate(
+      {
+        transactionRef,
+      },
+      {
+        $set: req.body,
+        new: true,
+      }
+    );
     return res.status(201).send(response.data); // Send a success response to the client
   } catch (err) {
     console.log(err);

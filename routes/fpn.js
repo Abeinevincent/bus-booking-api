@@ -3,7 +3,8 @@ const router = require("express").Router();
 router.post("/", async (req, res) => {
   try {
     console.log("FPN came successfully");
-    console.log(req.body);
+    console.log(req, "req");
+    console.log(res, "res");
     // const { test, transaction_reference } = req.body;
     return res.status(200).json(req.body);
     // ttddd
